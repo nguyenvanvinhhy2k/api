@@ -17,6 +17,35 @@ namespace Backend.Service
         {
             _db = db;
         }
+
+        public async Task<bool> DeleteFavoriteProduct(int productId, int customeId)
+        {
+            var checkFavorite = await _db.Favorites.FirstOrDefaultAsync(x => x.ProductId == productId && x.CustomerId == customeId);
+            if (checkFavorite == null)
+            {
+                return false;
+            }
+            var checkFavoriteProduct = await _db.Favorites.FirstAsync(x => x.ProductId == productId && x.CustomerId == customeId);
+            _db.Favorites.Remove(checkFavoriteProduct);
+            _db.SaveChanges();
+            return true;
+        }
+
+        public async Task<bool> FavoriteProduct(int productId, int customeId)
+        {
+            var checkFavorite = await _db.Favorites.FirstOrDefaultAsync(x => x.ProductId == productId && x.CustomerId == customeId);
+            if (checkFavorite == null)
+            {
+                return false;
+            }
+            var favarite = new Favorite();
+            favarite.ProductId = productId;
+            favarite.CustomerId = customeId;
+            favarite.CreatedDate = DateTime.Now;
+            _db.SaveChanges();
+            return true;
+        }
+
         public async Task<ApiResult<CustomerVM>> LoginCutomer(CustomerAuthenVM model)
         {
             var passs = XString.ToMD5(model.PassWord);

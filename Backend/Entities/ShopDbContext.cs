@@ -21,6 +21,7 @@ namespace Backend.Entities
         public DbSet<Role> roles { get; set; }
         public DbSet<Permission> permissions { get; set; }
         public DbSet<User> users { get; set; }
+        public DbSet<Favorite>  Favorites { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>(p =>

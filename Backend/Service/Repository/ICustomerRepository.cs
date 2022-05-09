@@ -11,5 +11,7 @@ namespace Backend.Service.Repository
     {
         Task<ApiResult<CustomerVM>> LoginCutomer(CustomerAuthenVM model);
         Task<bool> Register(CustomerRegistorVM model);
+        Task<bool> FavoriteProduct(int productId, int customeId);
+        Task<bool> DeleteFavoriteProduct(int productId, int customeId);
     }
 }

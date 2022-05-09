@@ -46,5 +46,33 @@ namespace Backend.Controllers
                 throw ex;
             }
         }
+        [HttpPost("FavoriteProduct")]
+        public async Task<IActionResult> FavoriteProduct(int productId, int customeId)
+        {
+            try
+            {
+                var reuslt = await _res.FavoriteProduct(productId, customeId);
+                return Ok(reuslt);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        [HttpPost("DeleteFavoriteProduct")]
+        public async Task<IActionResult> DeleteFavoriteProduct(int productid, int customeId)
+        {
+            try
+            {
+                var reuslt = await _res.DeleteFavoriteProduct(productid, customeId);
+                return Ok(reuslt);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
