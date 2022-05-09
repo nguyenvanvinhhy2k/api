@@ -74,5 +74,19 @@ namespace Backend.Controllers
                 throw ex;
             }
         }
+        [HttpGet("GetFavoriteCustomer")]
+        public async Task<IActionResult> GetFavoriteCustomer(int customerId)
+        {
+            try
+            {
+                var reuslt = await GetFavoriteCustomer(customerId);
+                return Ok(reuslt);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

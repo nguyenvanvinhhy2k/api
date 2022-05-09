@@ -1,4 +1,5 @@
-﻿using Backend.ViewModel.Common;
+﻿using Backend.Entities;
+using Backend.ViewModel.Common;
 using Backend.ViewModel.Customer;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,6 @@ namespace Backend.Service.Repository
         Task<bool> Register(CustomerRegistorVM model);
         Task<bool> FavoriteProduct(int productId, int customeId);
         Task<bool> DeleteFavoriteProduct(int productId, int customeId);
+        Task<List<Product>> GetFavoriteCustomer(int customeId);
     }
 }

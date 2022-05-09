@@ -46,6 +46,17 @@ namespace Backend.Service
             return true;
         }
 
+        public Task<List<Product>> GetFavoriteCustomer(int customeId)
+        {
+            var favorite = (from f in _db.Favorites
+                           join c in _db.customers on f.CustomerId equals c.ID
+                           join p in _db.products on f.ProductId equals p.ID
+                           where c.ID == customeId
+                           select p).ToListAsync();
+            return favorite;
+                           
+        }
+
         public async Task<ApiResult<CustomerVM>> LoginCutomer(CustomerAuthenVM model)
         {
             var passs = XString.ToMD5(model.PassWord);
