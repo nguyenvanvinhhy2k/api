@@ -34,7 +34,7 @@ namespace Backend.Service
         public async Task<bool> FavoriteProduct(int productId, int customeId)
         {
             var checkFavorite = await _db.Favorites.FirstOrDefaultAsync(x => x.ProductId == productId && x.CustomerId == customeId);
-            if (checkFavorite == null)
+            if (checkFavorite != null)
             {
                 return false;
             }
@@ -42,6 +42,7 @@ namespace Backend.Service
             favarite.ProductId = productId;
             favarite.CustomerId = customeId;
             favarite.CreatedDate = DateTime.Now;
+            _db.Favorites.Add(favarite);
             _db.SaveChanges();
             return true;
         }

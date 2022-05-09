@@ -47,7 +47,7 @@ namespace Backend.Controllers
             }
         }
         [HttpPost("FavoriteProduct")]
-        public async Task<IActionResult> FavoriteProduct(int productId, int customeId)
+        public async Task<IActionResult> FavoriteProduct([FromQuery] int productId, [FromQuery] int customeId)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace Backend.Controllers
             }
         }
         [HttpPost("DeleteFavoriteProduct")]
-        public async Task<IActionResult> DeleteFavoriteProduct(int productid, int customeId)
+        public async Task<IActionResult> DeleteFavoriteProduct([FromQuery]int productid, [FromQuery] int customeId)
         {
             try
             {
